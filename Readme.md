@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Анастасия Морозова](https://up.htmlacademy.ru/univer-js1/1/user/2221559).
-* Наставник: [Владимир Шишлянников](https://htmlacademy.ru/profile/id1082173).
+* Наставник: [Владимир  Шишлянников](https://htmlacademy.ru/profile/id1082173).
 
 ---
 
