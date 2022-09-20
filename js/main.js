@@ -10,8 +10,8 @@ function getRandomNumber(leftNumber,rightNumber){
   }
   return ('error');
 }
-function getMaxLength(line,maxLength){
+function getIsMaxLength(line,maxLength){
   return (line.length <= maxLength);
 }
-console.log(GetMaxLength('Вася', 5));
-console.log(1,10);
+console.log(getMaxLength('Вася', 5));
+console.log(getRandomNumber(1,10));
