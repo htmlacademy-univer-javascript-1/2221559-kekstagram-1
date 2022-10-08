@@ -10,7 +10,7 @@ function getRandomNumber(leftNumber, rightNumber) {
   }
   return ('error');
 }
-function getIsMaxLength(line, maxLength) {
+function getMaxLength(line, maxLength) {
   return (line.length <= maxLength);
 }
 getMaxLength('Вася', 5);
