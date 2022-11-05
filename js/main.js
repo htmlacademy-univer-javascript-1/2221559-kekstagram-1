@@ -1,3 +1,1 @@
-import { createPhotosOfUser } from './create-data';
-
-createPhotosOfUser();
+import './draw-thumbnails' ;
