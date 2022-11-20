@@ -23,4 +23,7 @@ const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomNumber, getRandomArrayElement, getArrayOfNumber, isEscapeKey};
+const checkLength = (string, maxLength) => string.length <= maxLength;
+const checkValuesNotRepeat = (arr) => arr.toLowerCase().split(' ').length === new Set(arr).size;
+
+export {getRandomNumber, getRandomArrayElement, getArrayOfNumber, isEscapeKey, checkLength, checkValuesNotRepeat};
