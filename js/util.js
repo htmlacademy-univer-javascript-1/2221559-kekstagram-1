@@ -21,4 +21,6 @@ const getArrayOfNumber = (maxNumber) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-export {getRandomNumber, getRandomArrayElement, getArrayOfNumber};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomNumber, getRandomArrayElement, getArrayOfNumber, isEscapeKey};
