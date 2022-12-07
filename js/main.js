@@ -1,1 +1,1 @@
-import './draw-thumbnails' ;
+import './draw-thumbnails.js' ;
