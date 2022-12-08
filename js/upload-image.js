@@ -1,5 +1,5 @@
 import { pristine } from './operate-form';
-import { isEscapeKey } from './util';
+import { isEscapeKey } from './util.js';
 
 const body = document.querySelector('body');
 const imgUploadForm = document.querySelector('.img-upload__form');
