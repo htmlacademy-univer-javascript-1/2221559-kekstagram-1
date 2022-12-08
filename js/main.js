@@ -1,3 +1,2 @@
-import './draw-thumbnails' ;
-import './draw-big-picture';
+import './draw-thumbnails.js' ;
 import './image-loader.js';

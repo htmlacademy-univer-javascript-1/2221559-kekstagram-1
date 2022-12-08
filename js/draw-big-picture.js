@@ -1,5 +1,4 @@
 import { isEscapeKey } from './util';
-import { pictures } from './draw-thumbnails';
 
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
@@ -49,21 +48,11 @@ const closeBigPictureEsc = function (evt) {
   }
 };
 
-const drawBigPicture = function () {
+const drawBigPicture = function (photoInfo) {
   openBigPicture();
+  createInfoBigPicture(photoInfo);
   closeButton.addEventListener('click', closeBigPicture);
   document.addEventListener('keydown', closeBigPictureEsc);
 };
 
-const photoClickHandler = (evt) => {
-  const picture = evt.target.closest('.picture');
-  if (picture) {
-    const pictureObj = pictures.find((elem) => elem.id === Number(picture.dataset.id));
-    createInfoBigPicture(pictureObj);
-    drawBigPicture();
-  }
-};
-
-const gallery = document.querySelector('.pictures');
-gallery.addEventListener('click', photoClickHandler);
-
+export {drawBigPicture};
