@@ -1,5 +1,6 @@
-import { pristine } from './operate-form';
-import { isEscapeKey } from './util.js';
+import {pristine} from './operate-form.js';
+import {isEscapeKey} from './util.js';
+import {addEffectsListener, removeEffectsListener, installSlider} from './apply-effect.js';
 
 const body = document.querySelector('body');
 const imgUploadForm = document.querySelector('.img-upload__form');
@@ -20,6 +21,8 @@ const closeImgOverlay = () => {
   document.removeEventListener('keydown', escListener);
   textHashtag.removeEventListener('keydown', propagationStop);
   textDescription.removeEventListener('keydown', propagationStop);
+  addEffectsListener();
+  installSlider();
 };
 
 function escListener(evt) {
@@ -40,6 +43,7 @@ const imageEditor = () => {
   textDescription.addEventListener('keydown', propagationStop);
   closeButton.addEventListener('click', closeButtonListener);
   document.addEventListener('keydown', escListener);
+  removeEffectsListener();
 };
 
 imgUploadForm.addEventListener('submit', (evt) => {

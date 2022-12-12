@@ -1,2 +1,3 @@
-import './draw-thumbnails.js' ;
-import './image-loader.js';
+import './draw-thumbnails.js';
+import './upload-image.js';
+import './scale-picture.js';
