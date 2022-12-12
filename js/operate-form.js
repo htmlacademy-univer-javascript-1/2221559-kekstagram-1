@@ -1,4 +1,4 @@
-import {MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH, HASHTAG_REGEX, MAX_HASHTAG_QUANTITY} from './data';
+import {MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH, HASHTAG_REGEX, MAX_HASHTAG_QUANTITY} from './data.js';
 import {checkLength, checkValuesNotRepeat} from './util.js';
 
 
