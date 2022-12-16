@@ -1,7 +1,9 @@
 import {pristine} from './operate-form.js';
 import {isEscapeKey} from './util.js';
-import {addEffectsListener, removeEffectsListener, installSlider} from './apply-effect.js';
+import {addEffectsListener, installSlider, removeEffectsListener} from './apply-effect.js';
 import {sendData} from './api.js';
+import { DEFAULT_SIZE } from './data.js';
+import { scaleImg } from './scale-picture.js';
 
 const body = document.querySelector('body');
 const uploadFile = document.querySelector('#upload-file');
@@ -11,6 +13,13 @@ const imgUploadInput = imgUploadForm.querySelector('.img-upload__input');
 const closeButton = imgUploadForm.querySelector('.img-upload__cancel');
 const textHashtag = imgUploadForm.querySelector('.text__hashtags');
 const textDescription = imgUploadForm.querySelector('.text__description');
+
+const bringToDefaults = () => {
+  scaleImg(DEFAULT_SIZE);
+  installSlider('none');
+  textHashtag.value = '';
+  textDescription.value = '';
+};
 
 const propagationStop = (evt) => {
   evt.stopPropagation();
@@ -41,12 +50,12 @@ function closeButtonListener() {
 const openImgOverlay = () => {
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
+  bringToDefaults();
   textHashtag.addEventListener('keydown', propagationStop);
   textDescription.addEventListener('keydown', propagationStop);
   closeButton.addEventListener('click', closeButtonListener);
   document.addEventListener('keydown', escListener);
   addEffectsListener();
-  installSlider();
 };
 
 const setUserFormSubmit = (onSuccess, onError) => {

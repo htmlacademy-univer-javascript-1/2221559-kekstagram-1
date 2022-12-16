@@ -16,17 +16,15 @@ const NAMES = [
   'Маша',
   'Даша' ];
 
-const EFFECTS = [
-  {
-    name: 'none',
+const EFFECTS = {
+  none: {
     filter: 'none',
     min: 0,
     max: 100,
     step: 1,
   },
 
-  {
-    name: 'chrome',
+  chrome: {
     filter: 'grayscale',
     min: 0,
     max: 1,
@@ -34,8 +32,7 @@ const EFFECTS = [
     unit: '',
   },
 
-  {
-    name: 'sepia',
+  sepia: {
     filter: 'sepia',
     min: 0,
     max: 1,
@@ -43,8 +40,7 @@ const EFFECTS = [
     unit: '',
   },
 
-  {
-    name: 'marvin',
+  marvin: {
     filter: 'invert',
     min: 0,
     max: 100,
@@ -52,8 +48,7 @@ const EFFECTS = [
     unit: '%',
   },
 
-  {
-    name: 'phobos',
+  phobos: {
     filter: 'blur',
     min: 0,
     max: 3,
@@ -61,21 +56,20 @@ const EFFECTS = [
     unit: 'px',
   },
 
-  {
-    name: 'heat',
+  heat: {
     filter: 'brightness',
     min: 1,
     max: 3,
     step: 0.1,
     unit: '',
   },
-];
+};
 
 const ARRAY_ID = getArrayOfNumber(1000);
 
 const MAX_HASHTAG_LENGTH = 20;
 const MAX_DESCRIPTION_LENGTH = 140;
-const HASHTAG_REGEX = /^#[a-zа-яё0-9]/i;
+const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 const MAX_HASHTAG_QUANTITY = 5;
 const LOAD_COMMENTS = 5;
 

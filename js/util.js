@@ -26,7 +26,7 @@ const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const checkLength = (string, maxLength) => string.length <= maxLength;
-const checkValuesNotRepeat = (arr) => arr.toLowerCase().split(' ').length === new Set(arr).size;
+const checkValuesNotRepeat = (arr) => arr.toLowerCase().split(' ').length === new Set(arr.toLowerCase().split(' ')).size;
 
 const showAlert = (message, color) => {
   const alertContainer = document.createElement('div');
