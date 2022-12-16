@@ -16,6 +16,9 @@ let commentsLoadCount = 0;
 let commentsArrayCopy = [];
 
 const renderComments =  (commentsArrForLoad) => {
+  if (commentsArrForLoad.length >= LOAD_COMMENTS) {
+    commentsArrForLoad = commentsArrForLoad.slice(commentsLoadCount, commentsLoadCount + LOAD_COMMENTS);
+  }
   commentsArrForLoad.forEach(({avatar, name, message}) => {
     commentsList.innerHTML += `
     <li class="social__comment">
@@ -31,6 +34,7 @@ const renderComments =  (commentsArrForLoad) => {
   commentsLoaded.textContent = commentsLoadCount;
   if (commentsLoadCount === commentsArrayCopy.length) {
     loadCommentsButton.classList.add('hidden');
+    commentsLoadCount = 0;
   }
   else {
     loadCommentsButton.classList.remove('hidden');
@@ -44,12 +48,11 @@ const createInfoBigPicture  = (photoInfo) => {
   description.textContent = photoInfo.description;
   commentsList.innerHTML = '';
   commentsArrayCopy = photoInfo.comments;
-  renderComments(commentsArrayCopy.slice(0, LOAD_COMMENTS));
+  renderComments(commentsArrayCopy.slice());
 };
 
-
 function addComments () {
-  renderComments(commentsArrayCopy.slice(commentsLoadCount, commentsLoadCount + LOAD_COMMENTS));
+  renderComments(commentsArrayCopy.slice());
 }
 
 const openBigPicture = function () {
