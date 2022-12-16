@@ -1,7 +1,6 @@
 import {MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH, HASHTAG_REGEX, MAX_HASHTAG_QUANTITY} from './data.js';
 import {checkLength, checkValuesNotRepeat} from './util.js';
 
-
 const imgForm = document.querySelector('.img-upload__form');
 const textHashtag = imgForm.querySelector('.text__hashtags');
 const textDescription = imgForm.querySelector('.text__description');
@@ -18,14 +17,12 @@ const pristine = new Pristine(imgForm, {
 const validateLengthDescription = (value) => checkLength(value, MAX_DESCRIPTION_LENGTH);
 const validateHashtagLength = (value) => value.split(' ').length <= MAX_HASHTAG_LENGTH;
 const validateHashtagFormat = (value) => {
-  if (value !== '') {
-    value.split(' ').forEach((hashtag) => {
-      if (!HASHTAG_REGEX.test(hashtag)) {
-        return false;
-      }
-    });
+  if (value === '') {
+    return true;
   }
-  return true;
+  else {
+    return value.split(' ').every((hashtag) => HASHTAG_REGEX.test(hashtag));
+  }
 };
 const validateHashtagQuantity = () => checkLength(textHashtag.value.split(' '), MAX_HASHTAG_QUANTITY);
 const validateHashtagUninqueness = (value) => checkValuesNotRepeat(value);

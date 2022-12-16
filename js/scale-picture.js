@@ -27,3 +27,5 @@ moreButton.addEventListener('click', () => {
   }
   scaleImg(currentValue);
 });
+
+export {scaleImg};
