@@ -61,8 +61,4 @@ const removeEffectsListener = () => {
   effectsList.removeEventListener('click', changeImgEffect);
 };
 
-const bringEffects = () => {
-  installSlider('none')
-};
-
 export {addEffectsListener, removeEffectsListener, installSlider};
