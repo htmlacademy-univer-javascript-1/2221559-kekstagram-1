@@ -2,19 +2,21 @@ import {pristine} from './operate-form.js';
 import {isEscapeKey} from './util.js';
 import {addEffectsListener, installSlider, removeEffectsListener} from './apply-effect.js';
 import {sendData} from './api.js';
-import {DEFAULT_SIZE} from './data.js';
+import {DEFAULT_SIZE, FILE_TYPES} from './data-constants.js';
 import {scaleImg} from './scale-picture.js';
 
 const body = document.querySelector('body');
 const uploadFile = document.querySelector('#upload-file');
 const imgUploadForm = document.querySelector('.img-upload__form');
 const imgUploadOverlay = imgUploadForm.querySelector('.img-upload__overlay');
+const imgPreview = imgUploadForm.querySelector('.img-upload__preview img');
 const imgUploadInput = imgUploadForm.querySelector('.img-upload__input');
 const closeButton = imgUploadForm.querySelector('.img-upload__cancel');
 const textHashtag = imgUploadForm.querySelector('.text__hashtags');
 const textDescription = imgUploadForm.querySelector('.text__description');
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
+
 
 const bringToDefaults = () => {
   scaleImg(DEFAULT_SIZE);
@@ -158,5 +160,18 @@ const setUserFormSubmit = (onSuccess, onError) => {
     }
   });
 };
+
+uploadFile.addEventListener('change', (evt) => {
+  evt.preventDefault();
+  const file = uploadFile.files[0];
+  const fileName = file.name.toLowerCase();
+  if (FILE_TYPES.some((type) => fileName.endsWith(type))) {
+    imgPreview.src = URL.createObjectURL(file);
+    openImgOverlay();
+  }
+  else {
+    showErrorUploadMessage();
+  }
+});
 
 export{showSuccessUploadMessage, showErrorUploadMessage, setUserFormSubmit};

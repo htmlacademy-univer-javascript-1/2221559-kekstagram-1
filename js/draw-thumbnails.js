@@ -1,6 +1,6 @@
 import {drawBigPicture} from './draw-big-picture.js';
 import {getRandomElements} from './util.js';
-import {RANDOM_PHOTOS_COUNT} from './data.js';
+import {RANDOM_PHOTOS_COUNT} from './data-constants.js';
 
 const listPictures = document.querySelector('.pictures');
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
@@ -10,9 +10,9 @@ const imgFilters = document.querySelector('.img-filters');
 const compareByComments = (photoA, photoB) => photoB.comments.length - photoA.comments.length;
 
 const filters = {
-  filterDefault: (photos) => photos,
-  filterRandom: (photos) => getRandomElements(photos, RANDOM_PHOTOS_COUNT),
-  filterDiscussed: (photos) => photos.sort(compareByComments)
+  'filter-default': (photos) => photos,
+  'filter-random': (photos) => getRandomElements(photos, RANDOM_PHOTOS_COUNT),
+  'filter-discussed': (photos) => photos.sort(compareByComments)
 };
 
 const clearThumbnails = () => {
@@ -26,8 +26,7 @@ const clearThumbnails = () => {
 
 const drawThumbnails = (picturesData) => {
   clearThumbnails();
-  const filter = imgFilters.querySelector('.img-filters__button--active').id
-    .replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+  const filter = imgFilters.querySelector('.img-filters__button--active').id;
   filters[filter](picturesData.slice()).forEach((photo) => {
     const pictureElement = templatePicture.cloneNode(true);
     pictureElement.querySelector('.picture__img').src = photo.url;

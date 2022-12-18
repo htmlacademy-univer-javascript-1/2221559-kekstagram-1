@@ -1,6 +1,6 @@
-import {ALERT_SHOW_TIME} from './data.js';
+import {ALERT_SHOW_TIME, RERENDER_DELAY} from './data-constants.js';
 
-function getRandomNumber(leftNumber, rightNumber) {
+const getRandomNumber = (leftNumber, rightNumber) => {
   if ((leftNumber >= 0) && (leftNumber < rightNumber)) {
     return Math.floor(Math.random() * (rightNumber - leftNumber) + leftNumber);
   }
@@ -11,20 +11,27 @@ function getRandomNumber(leftNumber, rightNumber) {
     return leftNumber;
   }
   return ('error');
-}
-
-const getArrayOfNumber = (maxNumber) => {
-  const array = [];
-  for (let i = 0; i < maxNumber; i++) {
-    array.push(i + 1);
-  }
-  return array;
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
+const getRandomElements = (elements, randomElementsCount) => {
+  const elementNumbers = [];
+  const randomElements = [];
+  for(let i = 0; i < elements.length; i++){
+    const number = getRandomNumber(0, elements.length - 1);
+    if(elementNumbers.indexOf(number) === -1){
+      randomElements.push(elements[number]);
+      elementNumbers.push(number);
+    }
+    if(randomElements.length === randomElementsCount){
+      break;
+    }
+  }
+  return randomElements;
+};
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
+const checkArrElementLength = (arr, maxLength) => arr[arr.length - 1].length <= maxLength;
 const checkLength = (string, maxLength) => string.length <= maxLength;
 const checkValuesNotRepeat = (arr) => arr.toLowerCase().split(' ').length === new Set(arr.toLowerCase().split(' ')).size;
 
@@ -49,29 +56,13 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-const debounce = (callback, timeoutDelay) => {
+const debounce = (callback) => {
   let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+    timeoutId = setTimeout(() => callback.apply(this, rest), RERENDER_DELAY);
   };
 };
 
-const getRandomElements = (elements, randomElementsCount) => {
-  const elementNumbers = [];
-  const randomElements = [];
-  for(let i = 0; i < elements.length; i++){
-    const number = getRandomNumber(0, elements.length - 1);
-    if(elementNumbers.indexOf(number) === -1){
-      randomElements.push(elements[number]);
-      elementNumbers.push(number);
-    }
-    if(randomElements.length === randomElementsCount){
-      break;
-    }
-  }
-  return randomElements;
-};
-
-export {getRandomNumber, getRandomArrayElement, getArrayOfNumber, isEscapeKey, checkLength, checkValuesNotRepeat,
-  showAlert, debounce, getRandomElements};
+export {isEscapeKey, checkLength, checkValuesNotRepeat,
+  showAlert, debounce, getRandomElements, checkArrElementLength};
