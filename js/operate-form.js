@@ -1,5 +1,5 @@
-import {MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH, HASHTAG_REGEX, MAX_HASHTAG_QUANTITY} from './data.js';
-import {checkLength, checkValuesNotRepeat} from './util.js';
+import {MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH, HASHTAG_REGEX, MAX_HASHTAG_QUANTITY} from './data-constants.js';
+import {checkLength, checkValuesNotRepeat, checkArrElementLength} from './util.js';
 
 const imgForm = document.querySelector('.img-upload__form');
 const textHashtag = imgForm.querySelector('.text__hashtags');
@@ -15,7 +15,7 @@ const pristine = new Pristine(imgForm, {
 });
 
 const validateLengthDescription = (value) => checkLength(value, MAX_DESCRIPTION_LENGTH);
-const validateHashtagLength = (value) => value.split(' ').length <= MAX_HASHTAG_LENGTH;
+const validateHashtagLength = (value) => checkArrElementLength(value.split(' '), MAX_HASHTAG_LENGTH);
 const validateHashtagFormat = (value) => {
   if (value === '') {
     return true;
