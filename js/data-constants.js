@@ -49,7 +49,7 @@ const EFFECTS = {
 
 const MAX_HASHTAG_LENGTH = 20;
 const MAX_DESCRIPTION_LENGTH = 140;
-const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9] + $/;
+const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]+$/;
 const MAX_HASHTAG_QUANTITY = 5;
 const LOAD_COMMENTS = 5;
 
